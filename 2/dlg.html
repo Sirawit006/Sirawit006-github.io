@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="th,en">
+    <head>
+        <title>ผลงาน - PORTFOLIO</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Mitr:wght@300;400&display=swap" rel="stylesheet">
+        <style>
+            *{
+                font-family: 'Mitr', sans-serif;
+                box-sizing: border-box;
+                padding: 0;
+                margin: 0;
+            }
+            body{
+                background-color: #1d1d1d;
+                
+            }
+            .cursor{
+                position: absolute;
+                width: 35px;
+                height: 35px;
+                z-index: 10000;
+                border-radius: 100%;
+                opacity: 0.5;
+                pointer-events: none;
+                mix-blend-mode: multiply;
+            }
+            .cursor#main {
+                background-color: #1d1d1d;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            nav{
+                position: absolute;
+                height: 80px;
+                width: 100%;
+                background-color: #1d1d1d;
+                color:#fff;
+                display: flex;
+                justify-content:space-between;
+                align-items: center;
+            }
+            nav h2{
+                font-size: 35px;
+                text-transform: uppercase;
+                margin-left: 60px;
+                padding-right: 70px;
+            }
+            ul{
+                list-style: none;
+            }
+            ul.mu{
+                display: flex;
+                margin-right: 26px;
+            }
+            ul.mu li{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                height: 60px;
+                padding: 0 40px;
+                transition: .2s;
+                position: relative;
+            }
+            ul.mu li .a1{
+                color: #fff;
+                text-decoration: none;
+                transition: all .3s;
+                border-bottom: 2px solid transparent;
+            }
+            ul.mu li .a1:hover{
+                padding-bottom: 6px;
+                border-bottom: 2px solid #fff;
+            }
+            ul.mu li ul.mu-s{
+                position: absolute;
+                top: 60px;
+                background-color: #1d1d1d;
+                display: none;
+                z-index: 1;
+            }
+            ul.mu li ul.mu-s li{
+                width: 200px;
+                padding: 20px 40px;
+                justify-content: flex-start;
+                position: relative;
+                z-index: 1;
+                color: #fff;
+                text-decoration: none;
+            }
+            ul.mu li ul.mu-s li:hover{
+                background-color: #5c5c5c;
+            }
+            .b:hover{
+                filter: brightness(60%);
+            }
+            ul.mu li:hover ul.mu-s{
+                display: block;
+            }
+            .ct{
+                position: absolute;
+                top: 80px;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                line-height: 50px;
+                overflow: auto;
+            }
+            .bg{
+                position: relative;
+                background-color: #fff;
+                padding: 40px;
+                margin-bottom: 30px;
+                margin-left: 20px;
+                margin-right: 20px;
+                border-radius: 100px;
+            }
+            .img1{
+                max-width: 500px;
+                margin: 0 auto;
+                margin-bottom: 20px;
+                display: flex;
+                justify-content: center;
+            }
+            .fb{
+                max-width: 7px;
+                margin: 0 auto;
+                display: flex;
+                justify-content: center;
+            }
+            .ig{
+                max-width: 5px;
+                margin: 0 auto;
+                display: flex;
+                justify-content: center;
+            }
+            .wo{
+                display: grid;
+                position: relative;
+                left: 9px;
+                grid: 250px 250px 250px 250px 250px / repeat(4, 320px);
+                place-self: center;
+                padding: 20px;
+                padding-bottom: 50px;
+            }
+            @media screen and (max-width: 500px) {
+                .grid{
+                    grid-template-columns: repeat(1,300px);
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="cursor" id="main">
+            
+        </div>
+        <script>
+            let cursorPosition = { x:0, y:0 };
+            let cursorMoving = false;
+            let cursorMoveTimeOut;
+            let circles = [];
+            let circleRemovalInterval;
+
+            const cursor = document.getElementById("main");
+
+            document.addEventListener("mousemove", (e) => {
+                cursorPosition.x = e.clientX;
+                cursorPosition.y = e.clientY;
+                cursor.style.left = e.clientX - cursor.offsetWidth / 2 + "px";
+                cursor.style.top  = e.clientY - cursor.offsetHeight / 2 + "px";
+
+                cursorMoving = true;
+
+                clearTimeout(cursorMoveTimeOut);
+
+                cursorMoveTimeOut = setTimeout(() => {
+                    cursorMoving = false;
+                    setTimeout(() => {
+                        clearInterval(circleRemovalInterval);
+                        circleRemovalInterval = setInterval(() => {
+                            if(circles.length > 0){
+                                let circle = circles.shift();
+                                circle.remove();
+                            } else {
+                                clearInterval(circleRemovalInterval);
+                            }
+                        }, 25);
+                    }, 1000);
+                }, 100);
+            });
+
+            setInterval(() => {
+                if(cursorMoving){
+                    const circle = document.createElement("div");
+                    circle.classList.add("circle");
+                    document.body.appendChild(circle);
+
+                    circle.style.left = cursorPosition.x - circle.offsetWidth / 2 + "px";
+                    circle.style.top = cursorPosition.y - circle.offsetHeight / 2 + "px";
+
+                    circles.push(circle);
+                }
+            }, 10);
+        </script>
+        <nav>
+            <h2><a href="index.html" style="color: #fff;text-decoration: none;">PORTFOLIO</a></h2>
+            <ul class="mu">
+                <li><a class="a1" href="atv.html">กิจกรรม &#128197;</a></li>
+                <li><a class="a1" href="dlg.html">เกียรติบัตร &#127918;</a></li>
+                <!-- <li><a class="a1" href="g18.html"> &#128286;</a></li>-->
+                <li><p class="a1">ติดต่อ &#128241;</p>
+                    <ul class="mu-s">
+                        <!--<a href="https://www.youtube.com/channel/UC2kry6I7b_VZWoLOLGMMApA"><li>YouTube <img src="c:\Learning Code\html\2\img\youtube.png" width="25px"></li></a>-->
+                        <a href="https://www.facebook.com/me/"><li>Facebook 
+                            <div class="fb">
+                                <img src="C:\Users\Kaiju_No8\Desktop\2\img\facebook.png" width="25px">
+                            </div>
+                        </li></a>
+                        
+                        <a href="https://www.instagram.com/sir.vixe/"><li>Instagram 
+                            <div class="ig">
+                                <img src="C:\Users\Kaiju_No8\Desktop\2\img\instagram.png" width="25px">
+                            </div>
+                        </li></a>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+        
+        <div class="ct">
+            <marquee dirction="left" style="color: #fff;">ยินดีต้อนรับสู่เว็บไซต์ - เกียรติบัตร</marquee>
+            <div class="bg">
+            <h1 style="text-align: center;">Certificate</h1>
+            <p style="text-align: center;">เกียรติบัตร</p>
+            <div class="wo">
+                <img src="C:\Users\Kaiju_No8\Desktop\2\img\IMG_20240822_092720.jpg" width="300px" style="border-radius: 12px; box-shadow: 4px 4px 4px 4px rgb(126, 126, 126) ;">
+                <img src="C:\Users\Kaiju_No8\Desktop\2\img\1730696037244.jpg" width="300px" style="border-radius: 12px; box-shadow: 4px 4px 4px 4px rgb(126, 126, 126) ;">
+                <img src="C:\Users\Kaiju_No8\Desktop\2\img\_.._CER_STUDENT_sm-cri_cerby_compet_89_school_65 (1)_page-0002.jpg" width="300px" style="border-radius: 12px; box-shadow: 4px 4px 4px 4px rgb(126, 126, 126) ;">
+                <img src="C:\Users\Kaiju_No8\Desktop\2\img\_.._CER_STUDENT_sm-north_cerby_compet_89_school_489_page-0002.jpg" width="300px" style="border-radius: 12px; box-shadow: 4px 4px 4px 4px rgb(126, 126, 126) ;">
+                <img src="C:\Users\Kaiju_No8\Desktop\2\img\_.._CER_STUDENT_sm-cri_cerby_compet_89_school_65_page-0001.jpg" width="300px" style="border-radius: 12px; box-shadow: 4px 4px 4px 4px rgb(126, 126, 126) ;">
+                <img src="C:\Users\Kaiju_No8\Desktop\2\img\1724288222320.jpg" width="300px" style="border-radius: 12px; box-shadow: 4px 4px 4px 4px rgb(126, 126, 126) ;">
+                <img src="C:\Users\Kaiju_No8\Desktop\2\img\หัตถกรรมครั้งที่ 72 หุ่นยนต์.jpg" width="300px" style="border-radius: 12px; box-shadow: 4px 4px 4px 4px rgb(126, 126, 126) ;">
+                <img src="C:\Users\Kaiju_No8\Desktop\2\img\1000004548_406b7f6f4c9640a730e9874f91e32d99-13_11_2567 12_35_19.jpg" width="300px" style="border-radius: 12px; box-shadow: 4px 4px 4px 4px rgb(126, 126, 126) ;">
+                <img src="C:\Users\Kaiju_No8\Desktop\2\img\HERO WEBSITE สิรวิชญ์ ยานะธรรม.png" width="300px" style="border-radius: 12px; box-shadow: 4px 4px 4px 4px rgb(126, 126, 126) ;">
+                <img src="C:\Users\Kaiju_No8\Desktop\2\img\1000006965_6f6f4f0562629d136b8acd022d08d961-18_12_2567 09_28_30.jpg" width="300px" style="border-radius: 12px; box-shadow: 4px 4px 4px 4px rgb(126, 126, 126) ;">
+                <img src="C:\Users\Kaiju_No8\Desktop\2\img\1720893975271.jpg" width="300px" style="border-radius: 12px; box-shadow: 4px 4px 4px 4px rgb(126, 126, 126) ;">
+                <img src="C:\Users\Kaiju_No8\Desktop\2\img\1715573344163.jpg" width="300px" style="border-radius: 12px; box-shadow: 4px 4px 4px 4px rgb(126, 126, 126) ;">
+                <img src="C:\Users\Kaiju_No8\Desktop\2\img\IMG_20230723_220653.jpg" width="300px" style="border-radius: 12px; box-shadow: 4px 4px 4px 4px rgb(126, 126, 126) ;">
+                <img src="C:\Users\Kaiju_No8\Desktop\2\img\133 sufe_วิว.jpg" width="300px" style="border-radius: 12px; box-shadow: 4px 4px 4px 4px rgb(126, 126, 126) ;">
+                <img src="C:\Users\Kaiju_No8\Desktop\2\img\Certificate_Arduino_1.jpg" width="300px" style="border-radius: 12px; box-shadow: 4px 4px 4px 4px rgb(126, 126, 126) ;">
+                <img src="C:\Users\Kaiju_No8\Desktop\2\img\1000006968_295fdaacc2a76a254c480548c69ab69d-18_12_2567 12_00_59.jpg" width="300px" style="border-radius: 12px; box-shadow: 4px 4px 4px 4px rgb(126, 126, 126) ;">
+                <img src="C:\Users\Kaiju_No8\Desktop\2\img\วิทยาลัยนวัตกรรมการผลิตขั้นสูง สถาบันเทคโนโลยีพระจอมเกล้าเจ้าคุณทหารลาดกระบัง(.jpg" width="300px" style="border-radius: 12px; box-shadow: 4px 4px 4px 4px rgb(126, 126, 126) ;">
+                <img src="C:\Users\Kaiju_No8\Desktop\2\img\1000006970_583323f104083e2501ee81e6d368d5b6-18_12_2567 14_10_27.jpg" width="300px" style="border-radius: 12px; box-shadow: 4px 4px 4px 4px rgb(126, 126, 126) ;">
+                <img src="C:\Users\Kaiju_No8\Desktop\2\img\1000007183_0004f4846c6e396b537dd5af46b35f23-20_12_2567 14_13_16.jpg" width="300px" style="border-radius: 12px; box-shadow: 4px 4px 4px 4px rgb(126, 126, 126) ;">
+                <img src="C:\Users\Kaiju_No8\Desktop\2\img\UC-2040a368-cae2-496c-a54f-108f9113bb06.jpg" width="300px" style="border-radius: 12px; box-shadow: 4px 4px 4px 4px rgb(126, 126, 126) ;">
+                <img src="C:\Users\Kaiju_No8\Desktop\2\img\1000042544_fac6a77aa2e96a36a508a101ad1ab7a4-9_13_2566, 18_26_56.jpg" width="300px" style="border-radius: 12px; box-shadow: 4px 4px 4px 4px rgb(126, 126, 126) ;">
+                <img src="C:\Users\Kaiju_No8\Desktop\2\img\1000006967_0bc3b36a4814de93ff5394c89109b78d-20_12_2567 14_14_13.jpg" width="300px" style="border-radius: 12px; box-shadow: 4px 4px 4px 4px rgb(126, 126, 126) ;">
+                <img src="C:\Users\Kaiju_No8\Desktop\2\img\1000006966_eff806a3d866d623d66d2d3ba39aac93-20_12_2567 14_14_14.jpg" width="300px" style="border-radius: 12px; box-shadow: 4px 4px 4px 4px rgb(126, 126, 126) ;">
+            </div>
+            </div>
+            <footer style="background-color: #252525; text-align: center;padding: 15px; color: #646464;">
+                Copyright © 2023
+                SIRAWIT YANATHAM
+            </footer>
+        </div>
+        
+    </body>
+</html>
