@@ -39,6 +39,45 @@
                 justify-content: center;
                 align-items: center;
             }
+            .popup .overlay{
+                position: fixed;
+                top: 0px;
+                left: 0px;
+                width: 100vw;
+                height: 100vh;
+                background: rgba(0, 0, 0, 0.7);
+                z-index: 1000;
+            }
+            .popup .content{
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%,-50%);
+                background-color: #fff;
+                width: 450px;
+                height: 400px;
+                z-index: 1001;
+                text-align: center;
+                padding: 20px;
+                box-sizing: border-box;
+                border-radius: 30px;
+            }
+            .popup button{
+                display: block;
+                cursor: pointer;
+                position: absolute;
+                color: #3d3d3d;
+                right: 20px;
+                top: 20px;
+                width: 35px;
+                height: 35px;
+                font-size: 45px;
+                line-height: 10px;
+                text-align: center;
+                border-radius: 50%;
+                border: none;
+                outline: none;
+            }
             nav{
                 position: absolute;
                 height: 80px;
@@ -232,6 +271,22 @@
             }, 10);
         </script>
         <nav>
+
+            <div class="popup">
+            <div class="overlay">
+                <div class="content">
+                    <button id="close"> &times; </button>
+                    <br>
+                    <h1 style="color: red;">ข้อแนะนำ</h1>
+                    <br>
+                    <p style="font-size: 20px;">เว็บไชต์นี้จะแสดงได้ดีบนอุปกรณ์เดสก์ท็อป</p>
+                    <img src="img/0a356142c7184ae283480e277bf81dda.gif" width="400px">
+                </div>
+            </div>
+        </div>
+
+        <script src="popup.js"></script>
+            
             <h2><a href="index.html" style="color: #fff;text-decoration: none;">PORTFOLIO</a></h2>
             <ul class="mu">
                 <li><a class="a1" href="atv.html">กิจกรรม &#128197;</a></li>
