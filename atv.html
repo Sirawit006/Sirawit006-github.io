@@ -191,21 +191,44 @@
             }
             .av9{
                 display: grid;
-                grid: 280px / repeat(2, 550px);
+                grid: 280px / repeat(2, 520px);
                 place-self: center;
                 padding-top: 40px;
             }
             .av0{
                 display: grid;
-                grid: 280px / repeat(2, 550px);
+                grid: 280px / repeat(2, 500px);
                 place-self: center;
                 padding-top: 40px;
                 padding-bottom: 40px;
             }
             
-            @media screen and (max-width: 500px) {
-                .grid{
-                    grid-template-columns: repeat(1,300px);
+            @media screen and (max-width: 800px) {
+                .av1{
+                    grid-template-columns: repeat(1,400px);
+                }
+                .av2{
+                    grid-template-columns: repeat(1,400px);
+                }
+                .av3{
+                    grid-template-columns: repeat(2,400px);
+                }
+                .av4{
+                    grid-template-columns: repeat(1,400px);
+                }
+                .av7{
+                    grid-template-columns: repeat(1,400px);
+                }
+                .av9{
+                    grid-template-columns: repeat(1,400px);
+                }
+                .av0{
+                    grid-template-columns: repeat(1,400px);
+                }
+            }
+            @media screen and (max-width: 700px) {
+                .av3{
+                    grid-template-columns: repeat(1,400px);
                 }
             }
         </style>
@@ -214,54 +237,9 @@
         <div class="cursor" id="main">
             
         </div>
-        <script>
-            let cursorPosition = { x:0, y:0 };
-            let cursorMoving = false;
-            let cursorMoveTimeOut;
-            let circles = [];
-            let circleRemovalInterval;
 
-            const cursor = document.getElementById("main");
+        <script src="cursor.js"></script>
 
-            document.addEventListener("mousemove", (e) => {
-                cursorPosition.x = e.clientX;
-                cursorPosition.y = e.clientY;
-                cursor.style.left = e.clientX - cursor.offsetWidth / 2 + "px";
-                cursor.style.top  = e.clientY - cursor.offsetHeight / 2 + "px";
-
-                cursorMoving = true;
-
-                clearTimeout(cursorMoveTimeOut);
-
-                cursorMoveTimeOut = setTimeout(() => {
-                    cursorMoving = false;
-                    setTimeout(() => {
-                        clearInterval(circleRemovalInterval);
-                        circleRemovalInterval = setInterval(() => {
-                            if(circles.length > 0){
-                                let circle = circles.shift();
-                                circle.remove();
-                            } else {
-                                clearInterval(circleRemovalInterval);
-                            }
-                        }, 25);
-                    }, 1000);
-                }, 100);
-            });
-
-            setInterval(() => {
-                if(cursorMoving){
-                    const circle = document.createElement("div");
-                    circle.classList.add("circle");
-                    document.body.appendChild(circle);
-
-                    circle.style.left = cursorPosition.x - circle.offsetWidth / 2 + "px";
-                    circle.style.top = cursorPosition.y - circle.offsetHeight / 2 + "px";
-
-                    circles.push(circle);
-                }
-            }, 10);
-        </script>
         <nav>
             <h2><a href="index.html" style="color: #fff;text-decoration: none;">PORTFOLIO</a></h2>
             <ul class="mu">
@@ -295,54 +273,59 @@
             <div class="av1">
                 <div class="a1"><img src="img/portfolio สจล..png" width="400px" style="position: relative; border-radius: 15px; box-shadow: 4px 4px 4px 4px rgb(126, 126, 126) ;"></div>
                 <div class="a2"><img src="img/portfolio สจล. (1).png" width="435px" style="position: relative; border-radius: 15px; box-shadow: 4px 4px 4px 4px rgb(126, 126, 126) ;"></div>
-                <p style="position: relative; text-align: end;"> ได้เข้าร่วมการแข่งขันหุ่นยนต์ ส.ส.ท. ชิงแชมป์ปร </p>
-                <p style="position: relative; "> ะเทศไทยประจำปี 2567 ณ ศูนย์การค้าเซียร์รังสิต </p>
             </div>
+            <p style="position: relative; text-align: center;"> ได้เข้าร่วมการแข่งขันหุ่นยนต์ ส.ส.ท. ชิงแชมป์ประเทศไทยประจำปี 2567 ณ ศูนย์การค้าเซียร์รังสิต</p>
+
             <div class="av2">
                 <img src="img/portfolio สจล. (2).png" width="400px" style="border-radius: 15px; box-shadow: 4px 4px 4px 4px rgb(126, 126, 126) ;">
                 <img src="img/portfolio สจล. (3).png" width="432px" style="border-radius: 15px; box-shadow: 4px 4px 4px 4px rgb(126, 126, 126) ;">
-                <p style="position: relative; text-align: end;"> ได้รับรางวัลระดับเหรียญทองการแข่งขันหุ่นยนต์นานาชาติ </p>
-                <p style="position: relative; left: 10px; "> WRC 2024 ประจำปี 2567 ณ วิทยาลัยเทคนิคชลบุรี  </p>
             </div>
+            <p style="position: relative; text-align: center;"> ได้รับรางวัลระดับเหรียญทองการแข่งขันหุ่นยนต์นานาชาติ WRC 2024 ประจำปี 2567 ณ วิทยาลัยเทคนิคชลบุรี</p>
+
             <div class="av3">
                 <img src="img/portfolio สจล. (4).png" width="390px" style="border-radius: 15px; box-shadow: 4px 4px 4px 4px rgb(126, 126, 126) ; position: relative; left: 40px;">
                 <img src="img/portfolio สจล. (5).png" width="390px" style="border-radius: 15px; box-shadow: 4px 4px 4px 4px rgb(126, 126, 126) ; position: relative; left: 30px;">
                 <img src="img/portfolio สจล. (6).png" width="362px" style="border-radius: 15px; box-shadow: 4px 4px 4px 4px rgb(126, 126, 126) ; position: relative; left: 20px;">
             </div>
             <p style="position: relative; text-align: center;"> ได้รับรางวัลระดับเหรียญเงิน และได้โล่รางวัลรองชนะเลิศอันดับที่ 2 ในการอบรมเชิงปฏิบัติการ และการแข่งขัน “โค้ดดิ้งหุ่นยนต์พิชิตภารกิจปริศนา?” <br> งานสัปดาห์วิทยาศาสตร์ประจำปี 2567 ณ มหาวิทยาลัยพะเยา</p>
+            
             <div class="av4">
                 <img src="img/portfolio สจล. (7).png" width="450px" style="border-radius: 15px; box-shadow: 4px 4px 4px 4px rgb(126, 126, 126) ;">
                 <img src="img/portfolio สจล. (8).png" width="490px" style="border-radius: 15px; box-shadow: 4px 4px 4px 4px rgb(126, 126, 126) ;">
-                <p style="position: relative; text-align: end;">ได้รับรางวัลระดับเหรียญทอง รองชนะเลิศอันดับที่ 2 กิจกรรมการแ</p>
-                <p>ข่งขันหุ่นยนต์ระดับกลาง ประจำปี 2567 ณ โรงเรียนแม่จันวิทยาคม</p>
             </div>
+            <p style="position: relative; text-align: center;">ได้รับรางวัลระดับเหรียญทอง รองชนะเลิศอันดับที่ 2 กิจกรรมการแข่งขันหุ่นยนต์ระดับกลาง ประจำปี 2567 ณ โรงเรียนแม่จันวิทยาคม</p>
+
             <div class="av5">
                 <img src="img/portfolio สจล. (9).png" width="400px" style="border-radius: 15px; box-shadow: 4px 4px 4px 4px rgb(126, 126, 126); position: relative; left: 283px;">
-                <p style="position: relative;">ได้รับคัดเลือกให้เป็นกรรมการตัดสินกีฬาปิงปอง ในกิจกรรมกีฬาประจำวิทยาเขตเวียงกาหลงประจำปี 2565 ณ โรงเรียนเวียงป่าเป้าวิทยาคม</p>
             </div>
+            <p style="position: relative; text-align: center;">ได้รับคัดเลือกให้เป็นกรรมการตัดสินกีฬาปิงปอง ในกิจกรรมกีฬาประจำวิทยาเขตเวียงกาหลงประจำปี 2565 ณ โรงเรียนเวียงป่าเป้าวิทยาคม</p>
+
             <div class="av6">
                 <img src="img/portfolio สจล. (10).png" width="400px" style="border-radius: 15px; box-shadow: 4px 4px 4px 4px rgb(126, 126, 126); position: relative; left: 283px;">
-                <p style="position: relative;">ได้รับการคัดเลือกให้เป็นตัวแทนในการชักธงประจำวิทยาเขต ในกิจกรรมกีฬาประจำจังหวัดเชียงรายประจำปี 2565 ณ โรงเรียนเวียงป่าเป้าวิทยาคม</p>
             </div>
+            <p style="position: relative; text-align: center;">ได้รับการคัดเลือกให้เป็นตัวแทนในการชักธงประจำวิทยาเขต ในกิจกรรมกีฬาประจำจังหวัดเชียงรายประจำปี 2565 ณ โรงเรียนเวียงป่าเป้าวิทยาคม</p>
+
             <div class="av7">
                 <img src="img/portfolio สจล. (11).png" width="370px" style="border-radius: 15px; box-shadow: 4px 4px 4px 4px rgb(126, 126, 126) ;">
                 <img src="img/portfolio สจล. (12).png" width="520px" style="border-radius: 15px; box-shadow: 4px 4px 4px 4px rgb(126, 126, 126) ;">
-                <p style="position: relative; text-align: end;">ได้เป็นสตาฟในงาน OPEN HO </p>
-                <p>USE ของโรงเรียนเวียงป่าเป้าวิทยาคม</p>
             </div>
+            <p style="position: relative; text-align: center;">ได้เป็นสตาฟในงาน OPEN HOUSE ของโรงเรียนเวียงป่าเป้าวิทยาคม</p>
+
             <div class="av8">
                 <img src="img/portfolio สจล. (13).png" width="500px" style="border-radius: 15px; box-shadow: 4px 4px 4px 4px rgb(126, 126, 126); position: relative; left: 145px;">
-                <p style="position: relative; text-align: center;"> ได้เข้าเป็นส่วนหนึ่งในการช่วยเหลือชาวบ้านในวิฤตน้ำท่วมในอำเภอเวียงป่าเป้า ณ โรงเรียนเวียงป่าเป้าวิทยาคม</p>
             </div>
+            <p style="position: relative; text-align: center;"> ได้เข้าเป็นส่วนหนึ่งในการช่วยเหลือชาวบ้านในวิฤตน้ำท่วมในอำเภอเวียงป่าเป้า ณ โรงเรียนเวียงป่าเป้าวิทยาคม</p>
+
             <div class="av9">
-                <img src="img/portfolio สจล. (14).png" width="460px" style="border-radius: 15px; box-shadow: 4px 4px 4px 4px rgb(126, 126, 126) ; position: relative; left: 46px;">
-                <img src="img/portfolio สจล. (15).png" width="460px" style="border-radius: 15px; box-shadow: 4px 4px 4px 4px rgb(126, 126, 126) ; position: relative; left: 40px;">
+                <img src="img/portfolio สจล. (14).png" width="460px" style="border-radius: 15px; box-shadow: 4px 4px 4px 4px rgb(126, 126, 126) ; position: relative; left: 20px;">
+                <img src="img/portfolio สจล. (15).png" width="460px" style="border-radius: 15px; box-shadow: 4px 4px 4px 4px rgb(126, 126, 126) ; position: relative; left: 20px;">
                 <p style="position: relative; text-align: center;">ได้เข้าร่วมกิจกรรมจิตอาสาเนื่องในวันคล้ายวันพระราชสมภพ รัชกาลที่ 10</p>
                 <p style="position: relative; text-align: center;">ได้เข้าร่วมกิจกรรมรณรงค์เชิญชวนให้บุคคลที่มีสิทธิ์เลือกตั้งให้ใช้สิทธิ์เลือกตั้ง</p>
             </div>
+
             <div class="av0">
-                <img src="img/portfolio สจล. (16).png" width="460px" style="border-radius: 15px; box-shadow: 4px 4px 4px 4px rgb(126, 126, 126) ; position: relative; left: 46px;">
-                <img src="img/portfolio สจล. (17).png" width="460px" style="border-radius: 15px; box-shadow: 4px 4px 4px 4px rgb(126, 126, 126) ; position: relative; left: 40px;">
+                <img src="img/portfolio สจล. (16).png" width="460px" style="border-radius: 15px; box-shadow: 4px 4px 4px 4px rgb(126, 126, 126) ;">
+                <img src="img/portfolio สจล. (17).png" width="460px" style="border-radius: 15px; box-shadow: 4px 4px 4px 4px rgb(126, 126, 126) ;">
                 <p style="position: relative; text-align: center;">ได้ควบคุมเครื่องเสียง โปรเจคเตอร์ เนื่องในวันครูแห่งชาติ</p>
                 <p style="position: relative; text-align: center;">ได้เป็นพี่สตาฟในกิจกรรมปรับพื้นฐานนักเรียนใหม่</p>
             </div>
