@@ -145,9 +145,19 @@
                 padding: 20px;
                 padding-bottom: 50px;
             }
-            @media screen and (max-width: 500px) {
-                .grid{
-                    grid-template-columns: repeat(1,300px);
+            @media screen and (max-width: 1000px) {
+                .wo{
+                    grid: 250px 250px 250px 250px 250px 250px 250px 250px / repeat(3, 320px);
+                }
+            }
+            @media screen and (max-width: 800px) {
+                .wo{
+                    grid: 250px 250px 250px 250px 250px 250px 250px 250px 250px 250px 250px/ repeat(2, 320px);
+                }
+            }
+            @media screen and (max-width: 600px) {
+                .wo{
+                    grid: 250px 250px 250px 250px 250px 250px 250px 250px 250px 250px 250px 250px 250px 250px 250px 250px 250px 250px 250px 250px 250px 250px / repeat(1, 320px);
                 }
             }
         </style>
