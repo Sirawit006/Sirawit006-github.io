@@ -6,11 +6,14 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Mitr:wght@300;400&display=swap" rel="stylesheet">
         <style>
-            *{
+            *,
+            *:before,
+            *:after{
                 font-family: 'Mitr', sans-serif;
                 box-sizing: border-box;
                 padding: 0;
                 margin: 0;
+                box-sizing: border-box;
             }
             body{
                 background-color: #1d1d1d;
@@ -163,6 +166,7 @@
                 line-height: 50px;
                 overflow: auto;
             }
+            
             .img1{
                 max-width: 500px;
                 margin: 0 auto;
@@ -222,57 +226,10 @@
         <div class="cursor" id="main">
             
         </div>
-        <script>
-            let cursorPosition = { x:0, y:0 };
-            let cursorMoving = false;
-            let cursorMoveTimeOut;
-            let circles = [];
-            let circleRemovalInterval;
+        
+        <script src="cursor.js"></script>
 
-            const cursor = document.getElementById("main");
-
-            document.addEventListener("mousemove", (e) => {
-                cursorPosition.x = e.clientX;
-                cursorPosition.y = e.clientY;
-                cursor.style.left = e.clientX - cursor.offsetWidth / 2 + "px";
-                cursor.style.top  = e.clientY - cursor.offsetHeight / 2 + "px";
-
-                cursorMoving = true;
-
-                clearTimeout(cursorMoveTimeOut);
-
-                cursorMoveTimeOut = setTimeout(() => {
-                    cursorMoving = false;
-                    setTimeout(() => {
-                        clearInterval(circleRemovalInterval);
-                        circleRemovalInterval = setInterval(() => {
-                            if(circles.length > 0){
-                                let circle = circles.shift();
-                                circle.remove();
-                            } else {
-                                clearInterval(circleRemovalInterval);
-                            }
-                        }, 25);
-                    }, 1000);
-                }, 100);
-            });
-
-            setInterval(() => {
-                if(cursorMoving){
-                    const circle = document.createElement("div");
-                    circle.classList.add("circle");
-                    document.body.appendChild(circle);
-
-                    circle.style.left = cursorPosition.x - circle.offsetWidth / 2 + "px";
-                    circle.style.top = cursorPosition.y - circle.offsetHeight / 2 + "px";
-
-                    circles.push(circle);
-                }
-            }, 10);
-        </script>
-        <nav>
-
-            <div class="popup">
+        <div class="popup">
             <div class="overlay">
                 <div class="content">
                     <button id="close"> &times; </button>
@@ -286,7 +243,8 @@
         </div>
 
         <script src="popup.js"></script>
-            
+
+        <nav>
             <h2><a href="index.html" style="color: #fff;text-decoration: none;">PORTFOLIO</a></h2>
             <ul class="mu">
                 <li><a class="a1" href="atv.html">กิจกรรม &#128197;</a></li>
@@ -310,7 +268,6 @@
                 </li>
             </ul>
         </nav>
-        
         
         <div class="ct">
             <marquee dirction="left" style="color: #ffffff;">ยินดีต้อนรับสู่เว็บไซต์ - PORTFOLIO</marquee>
